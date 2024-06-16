@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+/* width */
+::-webkit-scrollbar {
+  @apply w-2
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  @apply bg-gray-950
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-800 rounded-sm
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-700
+}

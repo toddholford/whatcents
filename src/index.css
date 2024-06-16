@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+input[type="date"] {
+    -webkit-appearance: none; /* Removes default styling in Safari */
+    -moz-appearance: none; /* Removes default styling in Firefox */
+    appearance: none; /* Standard way to remove default styling */
+    border: none; /* Removes default border */
+    background: none; /* Removes default background */
+    padding: 0; /* Removes default padding */
+    margin: 0; /* Removes default margin */
+    font-family: inherit; /* Inherit font from parent */
+    font-size: inherit; /* Inherit font size from parent */
+    color: inherit; /* Inherit color from parent */
+    outline: none; /* Removes default focus outline */
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+}
+
+.btn-main {
+    @apply rounded-md bg-gradient-to-r from-gray-700 to-gray-800 p-3 my-2 mx-2 w-1/6 text-center;
+}
+
+.btn-table-add {
+    @apply rounded-md bg-gradient-to-r from-gray-700 to-gray-800 h-8 w-1/12 text-center;
+}
+
+.btn-navbar {
+    @apply rounded-md bg-gradient-to-r from-gray-600 to-gray-800 p-3 my-2 mx-2 w-1/6 text-center;
+}
+
+.navbar {
+    @apply flex flex-none justify-center content-center items-center w-full bg-gray-900 rounded-bl-xl rounded-br-xl;
+}
+
+.calendar-input-label {
+    @apply block mb-2 text-base font-medium text-white;
+}
+
+.calendar-input {
+    @apply rounded-md bg-gray-500 h-8 w-full block pl-2;
+}
+
+.custom-number-input {
+    @apply rounded-l-md bg-gray-500 h-8 w-full block pl-2;
+}
