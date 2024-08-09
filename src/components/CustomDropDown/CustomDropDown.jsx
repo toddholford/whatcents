@@ -19,16 +19,20 @@ export const CustomDropdown = ({
   return (
     <div className={"relative text-sm " + customClassNames}>
       <button
-        className="bg-gray-850 block h-8 w-full rounded-sm pl-2 outline outline-1 outline-offset-0 outline-gray-700"
+        className="block h-8 w-full rounded-sm bg-gray-850 pl-2 outline outline-1 outline-offset-0 outline-gray-700"
         onClick={() => setIsOpen(!isOpen)}
       >
         <div className="flex justify-between">
-          <span>{selected || placeholder}</span>
+          {selected !== null ? (
+            <span>{selected}</span>
+          ) : (
+            <span className="pt-0.5 text-xs text-gray-400">{placeholder}</span>
+          )}
           <ChevronDownIcon className="h-5 w-5 pr-2" />
         </div>
       </button>
       {isOpen && (
-        <ul className="bg-gray-850 absolute mt-1 w-full rounded-sm shadow-lg outline outline-1 outline-offset-0 outline-gray-700">
+        <ul className="absolute mt-1 w-full rounded-sm bg-gray-850 shadow-lg outline outline-1 outline-offset-0 outline-gray-700">
           {options.map((option) => (
             <li
               key={option.id}

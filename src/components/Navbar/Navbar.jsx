@@ -95,7 +95,8 @@ export const Navbar = () => {
       className="col-span-1 row-span-full grid grid-rows-24 bg-gray-900 outline outline-1 outline-offset-0 outline-gray-700"
     >
       <div
-        data-tip="Dashboard"
+        data-tooltip-id="dashboard-tooltip"
+        data-tooltip-content="Dashboard"
         className={`col-start-1 row-start-2 mx-2 content-center ${getNavLinkClass("/dashboard")}`}
       >
         <Link to="/dashboard">
@@ -104,17 +105,33 @@ export const Navbar = () => {
           </div>
         </Link>
       </div>
+      <Tooltip
+        id="dashboard-tooltip"
+        delayShow={800}
+        style={{ backgroundColor: "rgb(31 41 55)", color: "#FFFFFF" }}
+        className="bg-gray-800 outline outline-1 outline-offset-0 outline-gray-700"
+      />
+
       <div
-        data-tip="Sign Out"
+        data-tooltip-id="sign-out-tooltip"
+        data-tooltip-content="Sign Out"
         className="col-start-1 row-start-22 mx-2 content-center text-center align-middle text-gray-500 hover:cursor-pointer hover:rounded-sm hover:bg-gray-800 hover:text-gray-200 hover:outline hover:outline-1 hover:outline-offset-0 hover:outline-gray-700"
       >
         <button onClick={() => signOutUser()}>
-          <div className="flex flex-row justify-center pt-2">
+          <div
+            id="sign-out-button"
+            className="flex flex-row justify-center pt-2"
+          >
             <ArrowLeftStartOnRectangleIcon className="h-6 w-6" />
           </div>
         </button>
       </div>
-      <Tooltip place="right" type="dark" effect="solid" />
+      <Tooltip
+        id="sign-out-tooltip"
+        delayShow={800}
+        style={{ backgroundColor: "rgb(31 41 55)", color: "#FFFFFF" }}
+        className="outline outline-1 outline-offset-0 outline-gray-700"
+      />
     </article>
   );
 };
