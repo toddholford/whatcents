@@ -158,10 +158,6 @@ export const DashboardPage = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Whatcents - Dashboard</title>
-        <link rel="icon" href="/favicon_io/whatcents-favicon.ico" />
-      </Helmet>
       {calculatorOpen ? (
         <Calculator setCalculatorOpen={setCalculatorOpen} />
       ) : null}
