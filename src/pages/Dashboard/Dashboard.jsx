@@ -37,6 +37,7 @@ import {
 import { getUserUUID } from "../../services/UsersService";
 import { CalculatorIcon } from "@heroicons/react/24/outline";
 import { Calculator } from "../../components/Calculator";
+import {Helmet} from "react-helmet-async";
 
 export const DashboardPage = () => {
   const [date, setDate] = useState(
@@ -157,6 +158,10 @@ export const DashboardPage = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Whatcents - Dashboard</title>
+        <link rel="icon" href="/favicon_io/whatcents-favicon.ico" />
+      </Helmet>
       {calculatorOpen ? (
         <Calculator setCalculatorOpen={setCalculatorOpen} />
       ) : null}
