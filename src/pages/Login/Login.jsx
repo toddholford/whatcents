@@ -90,13 +90,6 @@ export const LoginPage = () => {
           appearance={{ theme: customTheme }}
           theme="dark"
           providers={["google"]}
-          localization={{
-            variables: {
-              sign_in: {
-                link_text: "Don't have an account? Create one here!",
-              },
-            },
-          }}
         />
       </div>
     </div>
