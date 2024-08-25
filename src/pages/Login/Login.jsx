@@ -23,7 +23,7 @@ const customTheme = {
       inputBorderHover: "rgb(75 85 99)",
       inputBorderFocus: "white",
       inputText: "white",
-      inputLabelText: "#374151",
+      inputLabelText: "#9ca3af",
       inputPlaceholder: "#374151",
       messageText: "gray",
       messageTextDanger: "red",
@@ -84,19 +84,19 @@ export const LoginPage = () => {
 
   return (
     <div className="grid h-3/4 grid-cols-1 justify-items-center pt-24">
-      <h1 className="scale-150 text-xl font-extrabold">
-        My, My, What sense you have to choose Whatcents!
-      </h1>
-      <h4 className="scale-150 text-sm font-semibold">
-        Let's get you signed in, then we can help you keep your remaining cents
-        after payday.
-      </h4>
-      <div className="flex h-full w-1/4 flex-col items-center justify-center space-y-4 rounded-l-xl rounded-r-xl bg-gray-900 p-4 outline outline-1 outline-offset-0 outline-gray-700">
+      <div className="flex h-full w-1/4 flex-col items-center justify-center space-y-4 bg-gray-900 p-4 outline outline-1 outline-offset-0 outline-gray-700">
         <Auth
           supabaseClient={supabaseClient}
           appearance={{ theme: customTheme }}
           theme="dark"
           providers={["google"]}
+          localization={{
+            variables: {
+              sign_in: {
+                link_text: "Don't have an account? Create one here!",
+              },
+            },
+          }}
         />
       </div>
     </div>
