@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import supabaseClient from "../../config/supabaseClient";
 import { Auth } from "@supabase/auth-ui-react";
+// import { Auth } from "../../auth/Auth";
 import {
   // Import predefined theme
   ThemeSupa,
@@ -91,6 +92,8 @@ export const LoginPage = () => {
           theme="dark"
           providers={["google"]}
         />
+
+        {/*<Auth/>*/}
       </div>
     </div>
   );
