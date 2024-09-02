@@ -25,11 +25,11 @@ const customTheme = {
       inputBorderHover: "rgb(75 85 99)",
       inputBorderFocus: "white",
       inputText: "white",
-      inputLabelText: "#374151",
+      inputLabelText: "#95a5b5",
       inputPlaceholder: "#374151",
       messageText: "gray",
       messageTextDanger: "red",
-      anchorTextColor: "#374151",
+      anchorTextColor: "#95a5b5",
       anchorTextHoverColor: "white",
     },
     space: {
