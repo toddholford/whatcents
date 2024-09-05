@@ -48,7 +48,9 @@ export const DashboardPage = () => {
   const [incomeAmount, setIncomeAmount] = useState(0);
   const [expenseAmount, setExpenseAmount] = useState(0);
   const [remainingAmount, setRemainingAmount] = useState(0);
-  const [repeatingExpenses, setRepeatingExpenses] = useState({});
+  const [repeatingExpenses, setRepeatingExpenses] = useState({"Savings": 50,
+    "Mortgage": 950,
+    "Baby Fund": 100});
   const [repeatingExpenseTotal, setRepeatingExpenseTotal] = useState(0);
   const [payFrequency, setPayFrequency] = useState(null);
   const [payFrequencies, setPayFrequencies] = useState([]);
@@ -169,7 +171,7 @@ export const DashboardPage = () => {
         >
           <article
             id="left"
-            className="col-span-2 row-span-full grid grid-flow-row grid-rows-24 bg-gray-900 outline outline-1 outline-offset-0 outline-gray-700"
+            className="col-span-3 row-span-full grid grid-flow-row grid-rows-24 bg-gray-900 outline outline-1 outline-offset-0 outline-gray-700"
           >
             <article
               id="a"
@@ -184,10 +186,10 @@ export const DashboardPage = () => {
               </div>
             </article>
             <article
-              id="b"
-              className="col-span-1 row-span-2 content-center bg-gray-900 text-center outline outline-1 outline-offset-0 outline-gray-700"
+              id="remainder"
+              className="col-span-1 row-span-2 content-center bg-gray-850 text-center outline outline-1 outline-offset-0 outline-gray-700"
             >
-              <p className="text-2xl">
+              <p className="bg-clip-text text-transparent bg-gradient-to-r from-emerald-700 to-emerald-200 text-4xl font-bold">
                 {incomeAmount
                   ? `${"$" + (incomeAmount - (expenseAmount + repeatingExpenseTotal)).toFixed(2)}`
                   : `${"$" + "0.00"}`}
@@ -201,7 +203,7 @@ export const DashboardPage = () => {
             </article>
             <article
               id="d"
-              className="col-span-1 row-span-5 bg-gray-900 px-4 py-4 text-center outline outline-1 outline-offset-0 outline-gray-700"
+              className="col-span-1 row-span-5 bg-gray-900 px-16 py-4 text-center outline outline-1 outline-offset-0 outline-gray-700"
             >
               <CustomNumberInput
                 id="current_avg_income"
@@ -255,7 +257,7 @@ export const DashboardPage = () => {
             </article>
             <article
               id="d"
-              className="col-span-1 row-span-14 bg-gray-900 px-4 py-4 text-center outline outline-1 outline-offset-0 outline-gray-700"
+              className="relative col-span-1 row-span-14 bg-gray-900 px-14 py-4 text-center outline outline-1 outline-offset-0 outline-gray-700"
             >
               <RepeatingExpenses
                 userUUID={userUUID}
@@ -321,7 +323,7 @@ export const DashboardPage = () => {
           </article>
           <article
             id="right"
-            className="col-span-6 row-span-full grid grid-flow-row grid-rows-24 bg-gray-900 outline outline-1 outline-offset-0 outline-gray-700"
+            className="col-span-5 row-span-full grid grid-flow-row grid-rows-24 bg-gray-900 outline outline-1 outline-offset-0 outline-gray-700"
           >
             <article
               id="h"

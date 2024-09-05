@@ -8,8 +8,14 @@ module.exports = {
   ],
   theme: {
     extend: {
-      width: {
-        58: "14.25rem",
+      borderWidth: {
+        DEFAULT: '1px',
+        '0': '0',
+        '2': '2px',
+        '3': '3px',
+        '4': '4px',
+        '6': '6px',
+        '8': '8px',
       },
       colors: {
         gray: {
@@ -19,6 +25,15 @@ module.exports = {
         emerald: {
           975: "#062019",
         },
+      },
+      fontSize: {
+        sm: '0.8rem',
+        base: '1rem',
+        xl: '1.25rem',
+        '2xl': '1.563rem',
+        '3xl': '1.953rem',
+        '4xl': '2.441rem',
+        '5xl': '3.052rem',
       },
       gridColumn: {
         "span-13": "span 13 / span 13",
@@ -145,6 +160,9 @@ module.exports = {
       },
       scale: {
         25: ".25",
+      },
+      width: {
+        58: "14.25rem",
       },
     },
     plugins: [require("tailwind-scrollbar")],
