@@ -48,9 +48,7 @@ export const DashboardPage = () => {
   const [incomeAmount, setIncomeAmount] = useState(0);
   const [expenseAmount, setExpenseAmount] = useState(0);
   const [remainingAmount, setRemainingAmount] = useState(0);
-  const [repeatingExpenses, setRepeatingExpenses] = useState({"Savings": 50,
-    "Mortgage": 950,
-    "Baby Fund": 100});
+  const [repeatingExpenses, setRepeatingExpenses] = useState({});
   const [repeatingExpenseTotal, setRepeatingExpenseTotal] = useState(0);
   const [payFrequency, setPayFrequency] = useState(null);
   const [payFrequencies, setPayFrequencies] = useState([]);
