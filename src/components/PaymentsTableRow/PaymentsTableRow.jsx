@@ -7,6 +7,7 @@ import {
   getAllPayments,
 } from "../../services/PaymentsService";
 import { CustomNumberInput } from "../CustomNumberInput";
+import {PencilSquareIcon, TrashIcon} from "@heroicons/react/24/outline";
 
 export const PaymentsTableRow = ({ payment, setPayments, onDelete }) => {
   const [expenseName, setExpenseName] = useState(payment.expense_name);
@@ -53,23 +54,35 @@ export const PaymentsTableRow = ({ payment, setPayments, onDelete }) => {
           <td className="w-1/4 p-4 ordinal">
             {AddDueDateSuffix(payment.expense_due_date)}
           </td>
-          <td className="w-1/4 p-4">
-            <button
-              type="button"
-              className="ml-2 w-1/3 rounded-sm bg-gray-800 py-2 outline outline-1 outline-offset-0 outline-gray-600 hover:bg-gray-700"
-              onClick={() => {
+          <td className="w-1/4 px-4 flex items-center justify-center">
+
+            <div className="inline-flex rounded-sm shadow-sm" role="group">
+              <button onClick={() => {
                 setEditing(true);
-              }}
-            >
-              Edit
-            </button>
-            <button
-              type="button"
-              className="ml-2 w-1/3 rounded-sm bg-gray-800 py-2 outline outline-1 outline-offset-0 outline-gray-600 hover:bg-gray-700"
-              onClick={onDelete}
-            >
-              Delete
-            </button>
+              }} type="button" className="hover:text-emerald-500 px-2 py-1 bg-gray-800 border border-gray-600 rounded-s-sm hover:bg-gray-700">
+                <PencilSquareIcon className="h-6 w-6 scale-75" />
+              </button>
+              <button onClick={onDelete} type="button" className="hover:text-emerald-500 px-2 py-1 bg-gray-800 border border-gray-600 rounded-e-sm hover:bg-gray-700">
+                <TrashIcon className="h-6 w-6 scale-75 "/>
+              </button>
+            </div>
+
+            {/*<button*/}
+            {/*  type="button"*/}
+            {/*  className="ml-2 w-1/3 rounded-sm bg-gray-800 py-2 outline outline-1 outline-offset-0 outline-gray-600 hover:bg-gray-700"*/}
+            {/*  onClick={() => {*/}
+            {/*    setEditing(true);*/}
+            {/*  }}*/}
+            {/*>*/}
+            {/*  Edit*/}
+            {/*</button>*/}
+            {/*<button*/}
+            {/*  type="button"*/}
+            {/*  className="ml-2 w-1/3 rounded-sm bg-gray-800 py-2 outline outline-1 outline-offset-0 outline-gray-600 hover:bg-gray-700"*/}
+            {/*  onClick={onDelete}*/}
+            {/*>*/}
+            {/*  Delete*/}
+            {/*</button>*/}
           </td>
         </>
       ) : (

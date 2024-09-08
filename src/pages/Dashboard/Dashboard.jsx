@@ -255,7 +255,7 @@ export const DashboardPage = () => {
             </article>
             <article
               id="d"
-              className="relative col-span-1 row-span-14 bg-gray-900 px-14 py-4 text-center outline outline-1 outline-offset-0 outline-gray-700"
+              className="col-span-1 row-span-14 bg-gray-900 px-14 py-4 text-center outline outline-1 outline-offset-0 outline-gray-700"
             >
               <RepeatingExpenses
                 userUUID={userUUID}
@@ -276,7 +276,7 @@ export const DashboardPage = () => {
               className="col-span-1 row-span-1 flex flex-row items-center justify-between bg-gray-900 px-2 text-gray-400 outline outline-1 outline-offset-0 outline-gray-700"
             >
               <div className="">Current Pay Period</div>
-              <div className="">{`$${(expenseAmount + repeatingExpenseTotal).toFixed(2)}`}</div>
+              <div className="">{`$${(expenseAmount).toFixed(2)}`}</div>
             </article>
             <article
               id="f"

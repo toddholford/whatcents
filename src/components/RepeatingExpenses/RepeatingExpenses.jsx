@@ -81,7 +81,7 @@ export const RepeatingExpenses = ({
       </button>
       <form className="flex flex-col items-center justify-start w-full">
         {addNewRepeatingExpense ? (
-          <div className="absolute fixed z-10 mt-2 rounded border border-solid border-gray-700 bg-gray-900 p-2 text-center text-sm">
+          <div className="absolute fixed z-10 mt-2 w-1/6 rounded border border-solid border-gray-700 bg-gray-900 p-2 text-center text-sm">
             <p className="my-2 text-left text-sm font-thin text-gray-600">
               Name
             </p>

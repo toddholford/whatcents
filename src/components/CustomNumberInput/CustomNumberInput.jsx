@@ -41,7 +41,7 @@ export const CustomNumberInput = ({
         min="0.01"
         step="0.01"
         placeholder={placeholder}
-        className="block h-8 w-5/6 rounded-l-sm bg-gray-850 pl-2 outline outline-1 outline-offset-0 outline-gray-700"
+        className="block h-8 w-full rounded-l-sm bg-gray-850 pl-2 outline outline-1 outline-offset-0 outline-gray-700"
         onChange={(e) => {
           switch (numberType) {
             case "number":
@@ -57,7 +57,7 @@ export const CustomNumberInput = ({
         }}
         value={inputValue > 0 ? inputValue : defaultValue ? defaultValue : ""}
       />
-      <div className="flex w-1/6 flex-col">
+      <div className="flex w-10 flex-col">
         <button
           id="numUp"
           type="button"
