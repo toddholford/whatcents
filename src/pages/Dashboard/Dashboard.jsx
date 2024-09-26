@@ -181,16 +181,16 @@ export const DashboardPage = () => {
   const handlePaymentSubmit = (e) => {
     e.preventDefault();
 
-    if (!expenseName || !expenseAmount || !expenseDueDate) {
+    if (!expenseName || !paymentExpenseAmount || !expenseDueDate) {
       return;
     }
 
     addPayment(
         expenseName,
-        expenseAmount,
+        paymentExpenseAmount,
         expenseDueDate,
         setExpenseName,
-        setExpenseAmount,
+        setPaymentExpenseAmount,
         setExpenseDueDate,
         setPayments,
         setFetchError,
