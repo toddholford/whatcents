@@ -136,7 +136,7 @@ export const RepeatingExpenses = ({
                     onMouseDown={() =>
                       deleteRepeatingExpense(userUUID, repeatingExpenses, key)
                     }
-                    className="h-1/12 w-1/12 scale-75 cursor-pointer text-gray-600 hover:text-white"
+                    className="h-1/12 w-1/12 scale-75 cursor-pointer text-gray-600 hover:text-white rounded-sm outline outline-1 outline-offset-0 outline-gray-700 hover:bg-gray-800 hover:outline-gray-600 active:bg-gray-700"
                   >
                     <XMarkIcon />
                   </button>

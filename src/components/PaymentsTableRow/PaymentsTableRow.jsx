@@ -55,7 +55,6 @@ export const PaymentsTableRow = ({ payment, setPayments, onDelete }) => {
             {AddDueDateSuffix(payment.expense_due_date)}
           </td>
           <td className="w-1/4 px-4 flex items-center justify-center">
-
             <div className="inline-flex rounded-sm shadow-sm" role="group">
               <button onClick={() => {
                 setEditing(true);
@@ -66,23 +65,6 @@ export const PaymentsTableRow = ({ payment, setPayments, onDelete }) => {
                 <TrashIcon className="h-6 w-6 scale-75 "/>
               </button>
             </div>
-
-            {/*<button*/}
-            {/*  type="button"*/}
-            {/*  className="ml-2 w-1/3 rounded-sm bg-gray-800 py-2 outline outline-1 outline-offset-0 outline-gray-600 hover:bg-gray-700"*/}
-            {/*  onClick={() => {*/}
-            {/*    setEditing(true);*/}
-            {/*  }}*/}
-            {/*>*/}
-            {/*  Edit*/}
-            {/*</button>*/}
-            {/*<button*/}
-            {/*  type="button"*/}
-            {/*  className="ml-2 w-1/3 rounded-sm bg-gray-800 py-2 outline outline-1 outline-offset-0 outline-gray-600 hover:bg-gray-700"*/}
-            {/*  onClick={onDelete}*/}
-            {/*>*/}
-            {/*  Delete*/}
-            {/*</button>*/}
           </td>
         </>
       ) : (

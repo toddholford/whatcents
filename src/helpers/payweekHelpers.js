@@ -166,6 +166,34 @@ export function getPayweekExpenseTotal(
   return paymentTotals;
 }
 
+export function getSelectedPayweekExpenseTotal(
+    payweekDates,
+    repeatingExpenseAmount,
+    date,
+    payments,
+    selectedDate
+) {
+  let payweek = payweekDates ? payweekDates : getPayweekDates(date);
+  let paymentTotals = 0;
+  let selectedPayweekExpenses = [];
+
+  let index = payweek.findIndex(p => p.dayNumber === parseInt(selectedDate));
+
+  if (index !== -1) {
+    selectedPayweekExpenses = payweek.slice(index);
+
+    for (let i = 0; i < selectedPayweekExpenses.length; i++) {
+      payments.forEach((p) => {
+              if (selectedPayweekExpenses[i].dayNumber === p.expense_due_date) {
+                paymentTotals = paymentTotals + p.expense_amount;
+              }
+            });
+    }
+  }
+
+  return paymentTotals;
+}
+
 export function getAllPaymentsTotal(payments) {
   let total = 0;
   for (let i = 0; i < payments.length; i++) {

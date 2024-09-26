@@ -1,7 +1,10 @@
 import supabase from "../config/supabaseClient";
 
 export const getAllPayments = async (setPayments, setFetchError) => {
-  const { data, error } = await supabase.from("payments").select();
+  const { data, error } = await supabase
+      .from("payments")
+      .select()
+      .order('expense_due_date', { ascending: true });
 
   if (error) {
     setFetchError("Could not fetch the payments");

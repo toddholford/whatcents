@@ -92,7 +92,7 @@ export const Navbar = () => {
   return (
     <article
       id="navbar"
-      className="col-span-1 row-span-full grid grid-rows-24 bg-gray-900 outline outline-1 outline-offset-0 outline-gray-700"
+      className="col-span-1 row-span-full grid grid-rows-24 bg-gray-950 outline outline-1 outline-offset-0 outline-gray-700"
     >
       <div
         data-tooltip-id="dashboard-tooltip"
@@ -115,7 +115,7 @@ export const Navbar = () => {
       <div
         data-tooltip-id="sign-out-tooltip"
         data-tooltip-content="Sign Out"
-        className="col-start-1 row-start-22 mx-2 content-center text-center align-middle text-gray-500 hover:cursor-pointer hover:rounded-sm hover:bg-gray-800 hover:text-gray-200 hover:outline hover:outline-1 hover:outline-offset-0 hover:outline-gray-700"
+        className="col-start-1 row-start-19 mx-2 content-center text-center align-middle text-gray-500 hover:cursor-pointer hover:rounded-sm hover:bg-gray-800 hover:text-gray-200 hover:outline hover:outline-1 hover:outline-offset-0 hover:outline-gray-700"
       >
         <button onClick={() => signOutUser()}>
           <div

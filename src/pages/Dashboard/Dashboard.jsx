@@ -3,7 +3,7 @@ import { Navbar } from "../../components/Navbar";
 import { PaycheckCalendarPaymentInfo } from "../../components/PaycheckCalendarPaymentInfo";
 import { PaycheckCalendar } from "../../components/PaycheckCalendar";
 import { CustomNumberInput } from "../../components/CustomNumberInput";
-import { getAllPayments } from "../../services/PaymentsService";
+import {addPayment, getAllPayments} from "../../services/PaymentsService";
 import { getPaycheckFrequencies } from "../../services/PaycheckFrequenciesService";
 import { getPaycheckCalculations } from "../../services/PaycheckCalculationsService";
 import { PaymentsPage } from "../Payments";
@@ -24,7 +24,7 @@ import {
   getPayweekExpenseTotal,
   getPayweekRemainingAmount,
   getSelectedDateExpenses,
-  getSelectedDateExpenseTotal,
+  getSelectedDateExpenseTotal, getSelectedPayweekExpenseTotal,
 } from "../../helpers/payweekHelpers";
 import {
   addPaycheckInfo,
@@ -47,12 +47,14 @@ export const DashboardPage = () => {
   const [payweekDates, setPayweekDates] = useState(null);
   const [incomeAmount, setIncomeAmount] = useState(0);
   const [expenseAmount, setExpenseAmount] = useState(0);
+  const [selectedExpenseAmount, setSelectedExpenseAmount] = useState(0);
   const [remainingAmount, setRemainingAmount] = useState(0);
   const [repeatingExpenses, setRepeatingExpenses] = useState({});
   const [repeatingExpenseTotal, setRepeatingExpenseTotal] = useState(0);
   const [payFrequency, setPayFrequency] = useState(null);
   const [payFrequencies, setPayFrequencies] = useState([]);
   const [payweekCalendarRows, setPayweekCalendarRows] = useState(null);
+  const [payweekCalendarEndDate, setPayweekCalendarEndDate] = useState(null);
   const [payments, setPayments] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedDateExpenses, setSelectedDateExpenses] = useState([]);
@@ -61,6 +63,10 @@ export const DashboardPage = () => {
   const [userUUID, setUserUUID] = useState(null);
   const [ids, setIds] = useState([]);
   const [calculatorOpen, setCalculatorOpen] = useState(false);
+
+  const [expenseName, setExpenseName] = useState("");
+  const [paymentExpenseAmount, setPaymentExpenseAmount] = useState(0);
+  const [expenseDueDate, setExpenseDueDate] = useState(0);
 
   const notify = () => toast("Saved calculation values");
 
@@ -98,6 +104,7 @@ export const DashboardPage = () => {
     setStartDate(formatDate(date));
     setPayweekDates(getPayweekDates(date));
   }, [date]);
+
   //amount setter
   useEffect(() => {
     setExpenseAmount(
@@ -110,10 +117,30 @@ export const DashboardPage = () => {
     );
     setRemainingAmount(getPayweekRemainingAmount(incomeAmount, expenseAmount));
   }, [payweekDates, incomeAmount, repeatingExpenseTotal, payments]);
+
+  useEffect(() => {
+    setSelectedExpenseAmount(
+      getSelectedPayweekExpenseTotal(
+        payweekDates,
+        repeatingExpenseTotal,
+        date,
+        payments,
+        selectedDate,
+      ),
+    );
+  }, [payweekDates, incomeAmount, repeatingExpenseTotal, payments, selectedDate]);
+
   //calendar setter
   useEffect(() => {
     setPayweekCalendarRows(getPayweekCalendarRows(payweekDates, payFrequency));
   }, [payweekDates, payFrequency]);
+
+  useEffect(() => {
+    if (payFrequency === "bi-weekly") {
+      setPayweekCalendarEndDate(payweekCalendarRows[1][payweekCalendarRows[1].length - 1]);
+    }
+  }, [payweekCalendarRows]);
+
   //selected date expenses setter
   useEffect(() => {
     setSelectedDateExpenses(
@@ -151,6 +178,25 @@ export const DashboardPage = () => {
     notify();
   };
 
+  const handlePaymentSubmit = (e) => {
+    e.preventDefault();
+
+    if (!expenseName || !expenseAmount || !expenseDueDate) {
+      return;
+    }
+
+    addPayment(
+        expenseName,
+        expenseAmount,
+        expenseDueDate,
+        setExpenseName,
+        setExpenseAmount,
+        setExpenseDueDate,
+        setPayments,
+        setFetchError,
+    );
+  };
+
   const toggleCalculator = () => {
     setCalculatorOpen(!calculatorOpen);
     console.log("open calculator after : ", calculatorOpen);
@@ -165,7 +211,7 @@ export const DashboardPage = () => {
         <Navbar />
         <article
           id="main-content"
-          className="col-span-23 row-span-full grid grid-cols-12 grid-rows-4 bg-gray-900 outline outline-1 outline-offset-0 outline-gray-700"
+          className="gap-2 col-span-23 row-span-full grid grid-cols-12 grid-rows-4 bg-gray-950 outline outline-1 outline-offset-0 outline-gray-700"
         >
           <article
             id="left"
@@ -272,6 +318,25 @@ export const DashboardPage = () => {
             className="col-span-4 row-span-full grid grid-flow-row grid-rows-24 bg-gray-900 outline outline-1 outline-offset-0 outline-gray-700"
           >
             <article
+                id="remaining_expenses_total"
+                className="col-span-1 row-span-1 flex flex-row content-center items-center justify-between bg-gray-900 px-2 text-gray-400 outline outline-1 outline-offset-0 outline-gray-700"
+            >
+              <div className="">Remaining Expenses Total</div>
+              <div className="">{
+                `${selectedDate} - ${payweekCalendarEndDate}`
+              }</div>
+            </article>
+            <article
+                id="remainder"
+                className="col-span-1 row-span-2 content-center bg-gray-850 text-center outline outline-1 outline-offset-0 outline-gray-700"
+            >
+              <p className="bg-clip-text text-transparent bg-gradient-to-r from-rose-700 to-rose-200 text-4xl font-bold">
+                {incomeAmount
+                    ? `${"$" + (selectedExpenseAmount).toFixed(2)}`
+                    : `${"$" + "0.00"}`}
+              </p>
+            </article>
+            <article
               id="e"
               className="col-span-1 row-span-1 flex flex-row items-center justify-between bg-gray-900 px-2 text-gray-400 outline outline-1 outline-offset-0 outline-gray-700"
             >
@@ -280,7 +345,7 @@ export const DashboardPage = () => {
             </article>
             <article
               id="f"
-              className="col-span-1 row-span-8 content-center bg-gray-900 px-2 outline outline-1 outline-offset-0 outline-gray-700"
+              className="col-span-1 row-span-5 content-center bg-gray-900 px-2 outline outline-1 outline-offset-0 outline-gray-700"
             >
               <PaycheckCalendar
                 date={date}
@@ -290,7 +355,7 @@ export const DashboardPage = () => {
               />
             </article>
             <article
-              id="g"
+              id="selected_date_expenses"
               className="col-span-1 row-span-1 flex flex-row content-center items-center justify-between bg-gray-900 px-2 text-gray-400 outline outline-1 outline-offset-0 outline-gray-700"
             >
               <div className="">Selected Date Expenses</div>
@@ -327,16 +392,58 @@ export const DashboardPage = () => {
               id="h"
               className="col-span-1 row-span-1 flex flex-row content-center items-center justify-between bg-gray-900 px-2 text-gray-400 outline outline-1 outline-offset-0 outline-gray-700"
             >
-              <p className="">Monthly Expenses</p>
+              <p className="">Reoccurring Monthly Expenses</p>
               <p className="">{`$${getAllPaymentsTotal(payments)}`}</p>
+            </article>
+            <article id="h2" className="col-span-1 row-span-2 flex flex-row content-center items-center justify-evenly bg-gray-900 px-2 text-gray-400 outline outline-1 outline-offset-0 outline-gray-700">
+              <form
+                  onSubmit={handlePaymentSubmit}
+                  className="col-span-full row-span-1 flex flex-row items-center justify-center gap-4"
+              >
+                <div>
+                  <input
+                      placeholder="Name of Expense..."
+                      type="text"
+                      id="expense_name"
+                      className="block h-8 w-full rounded-sm bg-gray-850 pl-2 text-xs outline outline-1 outline-offset-0 outline-gray-700"
+                      onChange={(e) => {
+                        setExpenseName(e.target.value);
+                      }}
+                      value={expenseName || ""}
+                  />
+                </div>
+                <div>
+                  <CustomNumberInput
+                      placeholder="Expense Amount..."
+                      id="expense_amount"
+                      numberType="decimal"
+                      adjustBy="10"
+                      inputValue={paymentExpenseAmount}
+                      setInputValue={setPaymentExpenseAmount}
+                  />
+                </div>
+                <div>
+                  <CustomNumberInput
+                      placeholder="Expense Due Date..."
+                      id="expense_due_date"
+                      inputValue={expenseDueDate}
+                      setInputValue={setExpenseDueDate}
+                  />
+                </div>
+                <button
+                    type="submit"
+                    className="h-8 w-1/12 rounded-sm bg-emerald-950 text-center text-sm outline outline-1 outline-offset-0 outline-emerald-700 hover:bg-emerald-900 hover:outline-emerald-600 active:bg-emerald-800"
+                >
+                  Add
+                </button>
+              </form>
             </article>
             <article
               id="i"
-              className="col-span-1 row-span-23 bg-gray-900 outline outline-1 outline-offset-0 outline-gray-700"
+              className="col-span-1 row-span-20 bg-gray-900 outline outline-1 outline-offset-0 outline-gray-700"
             >
               <PaymentsPage
                 payments={payments}
-                expenseTotal={expenseAmount}
                 setPayments={setPayments}
                 fetchError={fetchError}
                 setFetchError={setFetchError}
