@@ -60,7 +60,7 @@ export const PaymentsPage = ({ payments, setPayments, fetchError, setFetchError 
               <th scope="col" className="w-1/4 p-2"></th>
             </tr>
           </thead>
-          <tbody className="flex h-full w-full flex-col items-center overflow-y-scroll">
+          <tbody className="flex h-97pc flex-col items-center overflow-y-scroll">
             {fetchError && <p>{fetchError}</p>}
             {payments &&
               payments.map((payment) => (

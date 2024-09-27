@@ -158,6 +158,15 @@ module.exports = {
         23: "repeat(23, minmax(0, 1fr))",
         24: "repeat(24, minmax(0, 1fr))",
       },
+      height: {
+        "97pc": "97.5%",
+      },
+      maxHeight: {
+        '108': '28rem',
+        // 'screen-main': '85vh',
+        // 'screen-main': '90%',
+        // 'screen-main': 'calc(100vh - 14rem)',
+      },
       scale: {
         25: ".25",
       },

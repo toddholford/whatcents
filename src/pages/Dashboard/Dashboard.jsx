@@ -207,7 +207,7 @@ export const DashboardPage = () => {
       {calculatorOpen ? (
         <Calculator setCalculatorOpen={setCalculatorOpen} />
       ) : null}
-      <div className="grid h-screen grid-cols-24 overflow-hidden">
+      <div className="grid grid-cols-24">
         <Navbar />
         <article
           id="main-content"
@@ -301,7 +301,7 @@ export const DashboardPage = () => {
             </article>
             <article
               id="d"
-              className="col-span-1 row-span-14 bg-gray-900 px-14 py-4 text-center outline outline-1 outline-offset-0 outline-gray-700"
+              className="col-span-1 row-span-14 max-h-108 overflow-y-scroll bg-gray-900 px-14 py-4 text-center outline outline-1 outline-offset-0 outline-gray-700"
             >
               <RepeatingExpenses
                 userUUID={userUUID}
@@ -363,7 +363,7 @@ export const DashboardPage = () => {
             </article>
             <article
               id="h"
-              className="col-span-1 row-span-14 content-start bg-gray-900 px-4 py-4 text-gray-400 outline outline-1 outline-offset-0 outline-gray-700"
+              className="col-span-1 row-span-14 max-h-108 overflow-y-scroll content-start bg-gray-900 px-4 py-4 text-gray-400 outline outline-1 outline-offset-0 outline-gray-700"
             >
               <div className="pb-2 text-gray-600">
                 {selectedDate ? (
@@ -372,7 +372,7 @@ export const DashboardPage = () => {
                   <></>
                 )}
               </div>
-              <div>
+              <div className="">
                 {selectedDateExpenses.map((dateExpense) => (
                   <PaycheckCalendarPaymentInfo
                     key={dateExpense.id}
