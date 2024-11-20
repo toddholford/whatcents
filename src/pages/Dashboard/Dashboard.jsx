@@ -365,23 +365,19 @@ export const DashboardPage = () => {
               id="h"
               className="col-span-1 row-span-14 max-h-108 overflow-y-scroll content-start bg-gray-900 px-4 py-4 text-gray-400 outline outline-1 outline-offset-0 outline-gray-700"
             >
-              <div className="pb-2 text-gray-600">
-                {selectedDate ? (
-                  <>Payments on the {AddDueDateSuffix(selectedDate)}</>
-                ) : (
+              {selectedDate ? (
+                  <div className="pb-2 text-gray-600">Payments on the {AddDueDateSuffix(selectedDate)}</div>
+              ) : (
                   <></>
-                )}
-              </div>
-              <div className="">
-                {selectedDateExpenses.map((dateExpense) => (
+              )}
+              {selectedDateExpenses.map((dateExpense) => (
                   <PaycheckCalendarPaymentInfo
-                    key={dateExpense.id}
-                    weekday={dateExpense.expense_due_date}
-                    amount={dateExpense.expense_amount}
-                    expense={dateExpense.expense_name}
+                      key={dateExpense.id}
+                      weekday={dateExpense.expense_due_date}
+                      amount={dateExpense.expense_amount}
+                      expense={dateExpense.expense_name}
                   />
-                ))}
-              </div>
+              ))}
             </article>
           </article>
           <article
