@@ -207,15 +207,15 @@ export const DashboardPage = () => {
       {calculatorOpen ? (
         <Calculator setCalculatorOpen={setCalculatorOpen} />
       ) : null}
-      <div className="grid grid-cols-24">
-        <Navbar />
+      <div className="grid grid-cols-2 lg:grid-cols-24">
+        <Navbar/>
         <article
           id="main-content"
-          className="gap-2 col-span-23 row-span-full grid grid-cols-12 grid-rows-4 bg-gray-950 outline outline-1 outline-offset-0 outline-gray-700"
+          className="md:gap-2 md:col-span-23 md:row-span-full md:grid md:grid-cols-12 md:grid-rows-4 bg-gray-950"
         >
           <article
             id="left"
-            className="col-span-3 row-span-full grid grid-flow-row grid-rows-24 bg-gray-900 outline outline-1 outline-offset-0 outline-gray-700"
+            className="col-span-3 row-span-full grid grid-flow-row grid-rows-24 bg-gray-900"
           >
             <article
               id="a"
@@ -436,7 +436,7 @@ export const DashboardPage = () => {
             </article>
             <article
               id="i"
-              className="col-span-1 row-span-20 bg-gray-900 outline outline-1 outline-offset-0 outline-gray-700"
+              className="col-span-1 row-span-20 bg-gray-900"
             >
               <PaymentsPage
                 payments={payments}
