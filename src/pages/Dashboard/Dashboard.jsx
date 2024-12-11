@@ -40,6 +40,7 @@ import { Calculator } from "../../components/Calculator";
 import {Helmet} from "react-helmet-async";
 import {FormColumn} from "../../components/FormColumn";
 import {CalendarColumn} from "../../components/CalendarColumn";
+import {MonthlyExpensesColumn} from "../../components/MonthlyExpensesColumn";
 
 export const DashboardPage = () => {
   const [date, setDate] = useState(
@@ -176,7 +177,7 @@ export const DashboardPage = () => {
       ) : null}
       <div className="grid grid-cols-2 lg:grid-cols-24">
         <Navbar/>
-        <article
+        <div
           id="main-content"
           className="md:gap-2 md:col-span-23 md:row-span-full md:grid md:grid-cols-12 md:grid-rows-4 bg-gray-950"
         >
@@ -212,74 +213,20 @@ export const DashboardPage = () => {
               payweekCalendarRows={payweekCalendarRows}
               selectedDateExpenses={selectedDateExpenses}
           />
-
-          <article
-            id="right"
-            className="col-span-5 row-span-full grid grid-flow-row grid-rows-24 bg-gray-900 outline outline-1 outline-offset-0 outline-gray-700"
-          >
-            <article
-              id="h"
-              className="col-span-1 row-span-1 flex flex-row content-center items-center justify-between bg-gray-900 px-2 text-gray-400 outline outline-1 outline-offset-0 outline-gray-700"
-            >
-              <p className="">Reoccurring Monthly Expenses</p>
-              <p className="">{`$${getAllPaymentsTotal(payments)}`}</p>
-            </article>
-            <article id="h2" className="col-span-1 row-span-2 flex flex-row content-center items-center justify-evenly bg-gray-900 px-2 text-gray-400 outline outline-1 outline-offset-0 outline-gray-700">
-              <form
-                  onSubmit={handlePaymentSubmit}
-                  className="col-span-full row-span-1 flex flex-row items-center justify-center gap-4"
-              >
-                <div>
-                  <input
-                      placeholder="Name of Expense..."
-                      type="text"
-                      id="expense_name"
-                      className="block h-8 w-full rounded-sm bg-gray-850 pl-2 text-xs outline outline-1 outline-offset-0 outline-gray-700"
-                      onChange={(e) => {
-                        setExpenseName(e.target.value);
-                      }}
-                      value={expenseName || ""}
-                  />
-                </div>
-                <div>
-                  <CustomNumberInput
-                      placeholder="Expense Amount..."
-                      id="expense_amount"
-                      numberType="decimal"
-                      adjustBy="10"
-                      inputValue={paymentExpenseAmount}
-                      setInputValue={setPaymentExpenseAmount}
-                  />
-                </div>
-                <div>
-                  <CustomNumberInput
-                      placeholder="Expense Due Date..."
-                      id="expense_due_date"
-                      inputValue={expenseDueDate}
-                      setInputValue={setExpenseDueDate}
-                  />
-                </div>
-                <button
-                    type="submit"
-                    className="h-8 w-1/12 rounded-sm bg-emerald-950 text-center text-sm outline outline-1 outline-offset-0 outline-emerald-700 hover:bg-emerald-900 hover:outline-emerald-600 active:bg-emerald-800"
-                >
-                  Add
-                </button>
-              </form>
-            </article>
-            <article
-              id="i"
-              className="col-span-1 row-span-20 bg-gray-900"
-            >
-              <PaymentsPage
-                payments={payments}
-                setPayments={setPayments}
-                fetchError={fetchError}
-                setFetchError={setFetchError}
-              />
-            </article>
-          </article>
-        </article>
+          <MonthlyExpensesColumn
+              handlePaymentSubmit={handlePaymentSubmit}
+              expenseName={expenseName}
+              setExpenseName={setExpenseName}
+              paymentExpenseAmount={paymentExpenseAmount}
+              setPaymentExpenseAmount={setPaymentExpenseAmount}
+              expenseDueDate={expenseDueDate}
+              setExpenseDueDate={setExpenseDueDate}
+              payments={payments}
+              setPayments={setPayments}
+              fetchError={fetchError}
+              setFetchError={setFetchError}
+          />
+        </div>
       </div>
     </>
   );
