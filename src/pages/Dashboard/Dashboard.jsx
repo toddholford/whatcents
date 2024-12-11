@@ -201,8 +201,18 @@ export const DashboardPage = () => {
               fetchError={fetchError}
               setFetchError={setFetchError}
           />
+          <CalendarColumn
+              date={date}
+              selectedDate={selectedDate}
+              setSelectedDate={setSelectedDate}
+              payweekCalendarEndDate={payweekCalendarEndDate}
+              incomeAmount={incomeAmount}
+              expenseAmount={expenseAmount}
+              selectedExpenseAmount={selectedExpenseAmount}
+              payweekCalendarRows={payweekCalendarRows}
+              selectedDateExpenses={selectedDateExpenses}
+          />
 
-          {/*<CalendarColumn incomeAmount={incomeAmount} payweekCalendarEndDate={payweekCalendarEndDate} date={date} payweekCalendarRows={payweekCalendarRows} selectedDate={selectedDate} setSelectedDate={setSelectedDate} selectedDateExpenses={selectedDateExpenses} setSelectedDateExpenses={setSelectedDateExpenses} expenseAmount={expenseAmount} paycheckFrequency={paycheckFrequency} paycheckCalculations={paycheckCalculations} userUUID={userUUID} ids={ids} fetchError={fetchError} setFetchError={setFetchError} selectedExpenseAmount={selectedExpenseAmount} setSelectedExpenseAmount={setSelectedExpenseAmount} remainingAmount={remainingAmount} setRemainingAmount={setRemainingAmount} calculatorOpen={calculatorOpen} setCalculatorOpen={setCalculatorOpen}/>*/}
           <article
             id="right"
             className="col-span-5 row-span-full grid grid-flow-row grid-rows-24 bg-gray-900 outline outline-1 outline-offset-0 outline-gray-700"
