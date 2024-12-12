@@ -159,6 +159,7 @@ module.exports = {
         24: "repeat(24, minmax(0, 1fr))",
       },
       height: {
+        "69pc": "69%",
         "97pc": "97.5%",
       },
       maxHeight: {
