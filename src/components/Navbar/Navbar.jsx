@@ -93,7 +93,7 @@ import {
 import supabaseClient from "../../config/supabaseClient";
 import { Tooltip } from "react-tooltip";
 
-export const Navbar = () => {
+export const Navbar = ({formColumn, setFormColumn, calendarColumn, setCalendarColumn, monthlyExpensesColumn, setMonthlyExpensesColumn}) => {
   const [user, setUser] = useState({});
   const navigate = useNavigate();
   const location = useLocation();
@@ -121,12 +121,22 @@ export const Navbar = () => {
         : "text-gray-500 hover:cursor-pointer hover:rounded-sm hover:bg-gray-800 hover:text-gray-200 hover:outline hover:outline-1 hover:outline-offset-0 hover:outline-gray-700";
   };
 
-  function toggleCalendarColumn() {
+  function toggleFormColumn() {
+    setFormColumn(!formColumn);
+    setCalendarColumn(false);
+    setMonthlyExpensesColumn(false);
+  }
 
+  function toggleCalendarColumn() {
+    setCalendarColumn(!calendarColumn);
+    setFormColumn(false);
+    setMonthlyExpensesColumn(false);
   }
 
   function toggleMonthlyExpensesColumn() {
-
+    setMonthlyExpensesColumn(!monthlyExpensesColumn);
+    setFormColumn(false);
+    setCalendarColumn(false);
   }
 
   return (
@@ -171,27 +181,27 @@ export const Navbar = () => {
 
         {/* Bottom Navbar for Mobile */}
         <nav className="fixed bottom-0 left-0 w-full bg-gray-950 text-white p-4 flex justify-around md:hidden">
-          <Link
-              to="/dashboard"
-              className={`text-center ${getNavLinkClass("/dashboard")}`}
+          <button
+              onClick={() => toggleFormColumn()}
+              className="text-center text-gray-500 p-2 hover:cursor-pointer hover:rounded-sm hover:bg-gray-800 hover:text-gray-200 hover:outline hover:outline-1 hover:outline-offset-0 hover:outline-gray-700"
           >
             <RectangleGroupIcon className="h-6 w-6 mx-auto" />
-          </Link>
+          </button>
           <button
               onClick={() => toggleCalendarColumn()}
-              className="text-center text-gray-500 hover:cursor-pointer hover:rounded-sm hover:bg-gray-800 hover:text-gray-200 hover:outline hover:outline-1 hover:outline-offset-0 hover:outline-gray-700"
+              className="text-center text-gray-500 p-2 hover:cursor-pointer hover:rounded-sm hover:bg-gray-800 hover:text-gray-200 hover:outline hover:outline-1 hover:outline-offset-0 hover:outline-gray-700"
           >
             <CalendarIcon className="h-6 w-6 mx-auto" />
           </button>
           <button
               onClick={() => toggleMonthlyExpensesColumn()}
-              className="text-center text-gray-500 hover:cursor-pointer hover:rounded-sm hover:bg-gray-800 hover:text-gray-200 hover:outline hover:outline-1 hover:outline-offset-0 hover:outline-gray-700"
+              className="text-center text-gray-500 p-2 hover:cursor-pointer hover:rounded-sm hover:bg-gray-800 hover:text-gray-200 hover:outline hover:outline-1 hover:outline-offset-0 hover:outline-gray-700"
           >
             <TableCellsIcon className="h-6 w-6 mx-auto" />
           </button>
           <button
               onClick={() => signOutUser()}
-              className="text-center text-gray-500 hover:cursor-pointer hover:rounded-sm hover:bg-gray-800 hover:text-gray-200 hover:outline hover:outline-1 hover:outline-offset-0 hover:outline-gray-700"
+              className="text-center text-gray-500 p-2 hover:cursor-pointer hover:rounded-sm hover:bg-gray-800 hover:text-gray-200 hover:outline hover:outline-1 hover:outline-offset-0 hover:outline-gray-700"
           >
             <ArrowLeftOnRectangleIcon className="h-6 w-6 mx-auto" />
           </button>
