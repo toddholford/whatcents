@@ -71,6 +71,10 @@ export const DashboardPage = () => {
   const [paymentExpenseAmount, setPaymentExpenseAmount] = useState(0);
   const [expenseDueDate, setExpenseDueDate] = useState(0);
 
+  const [showFormColumn, setShowFormColumn] = useState(true);
+  const [showCalendarColumn, setShowCalendarColumn] = useState(false);
+  const [showMonthlyExpensesColumn, setShowMonthlyExpensesColumn] = useState(false);
+
 
   //get payments
   useEffect(() => {
@@ -175,12 +179,12 @@ export const DashboardPage = () => {
       {calculatorOpen ? (
         <Calculator setCalculatorOpen={setCalculatorOpen} />
       ) : null}
-      <Navbar />
+      <Navbar formColumn={showFormColumn} setFormColumn={setShowFormColumn} calendarColumn={showCalendarColumn} setCalendarColumn={setShowCalendarColumn} monthlyExpensesColumn={showMonthlyExpensesColumn} setMonthlyExpensesColumn={setShowMonthlyExpensesColumn} />
       <div
           id="main-content"
           className="md:ml-14 md:gap-2 md:col-span-23 md:row-span-full md:grid md:grid-cols-12 md:grid-rows-4 bg-gray-950"
       >
-        <FormColumn
+        {showFormColumn && <FormColumn
             userUUID={userUUID}
             repeatingExpenses={repeatingExpenses}
             setRepeatingExpenses={setRepeatingExpenses}
@@ -200,31 +204,35 @@ export const DashboardPage = () => {
             setIds={setIds}
             fetchError={fetchError}
             setFetchError={setFetchError}
-        />
-        <CalendarColumn
-            date={date}
-            selectedDate={selectedDate}
-            setSelectedDate={setSelectedDate}
-            payweekCalendarEndDate={payweekCalendarEndDate}
-            incomeAmount={incomeAmount}
-            expenseAmount={expenseAmount}
-            selectedExpenseAmount={selectedExpenseAmount}
-            payweekCalendarRows={payweekCalendarRows}
-            selectedDateExpenses={selectedDateExpenses}
-        />
-        <MonthlyExpensesColumn
-            handlePaymentSubmit={handlePaymentSubmit}
-            expenseName={expenseName}
-            setExpenseName={setExpenseName}
-            paymentExpenseAmount={paymentExpenseAmount}
-            setPaymentExpenseAmount={setPaymentExpenseAmount}
-            expenseDueDate={expenseDueDate}
-            setExpenseDueDate={setExpenseDueDate}
-            payments={payments}
-            setPayments={setPayments}
-            fetchError={fetchError}
-            setFetchError={setFetchError}
-        />
+        />}
+        {
+          showCalendarColumn && <CalendarColumn
+              date={date}
+              selectedDate={selectedDate}
+              setSelectedDate={setSelectedDate}
+              payweekCalendarEndDate={payweekCalendarEndDate}
+              incomeAmount={incomeAmount}
+              expenseAmount={expenseAmount}
+              selectedExpenseAmount={selectedExpenseAmount}
+              payweekCalendarRows={payweekCalendarRows}
+              selectedDateExpenses={selectedDateExpenses}
+          />
+        }
+        {
+          showMonthlyExpensesColumn && <MonthlyExpensesColumn
+              handlePaymentSubmit={handlePaymentSubmit}
+              expenseName={expenseName}
+              setExpenseName={setExpenseName}
+              paymentExpenseAmount={paymentExpenseAmount}
+              setPaymentExpenseAmount={setPaymentExpenseAmount}
+              expenseDueDate={expenseDueDate}
+              setExpenseDueDate={setExpenseDueDate}
+              payments={payments}
+              setPayments={setPayments}
+              fetchError={fetchError}
+              setFetchError={setFetchError}
+          />
+        }
       </div>
     </>
   );
