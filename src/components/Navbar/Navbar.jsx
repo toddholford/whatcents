@@ -86,7 +86,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
-  ArrowLeftOnRectangleIcon,
+  ArrowLeftOnRectangleIcon, CalendarIcon,
   RectangleGroupIcon,
   TableCellsIcon,
 } from "@heroicons/react/24/outline";
@@ -121,10 +121,18 @@ export const Navbar = () => {
         : "text-gray-500 hover:cursor-pointer hover:rounded-sm hover:bg-gray-800 hover:text-gray-200 hover:outline hover:outline-1 hover:outline-offset-0 hover:outline-gray-700";
   };
 
+  function toggleCalendarColumn() {
+
+  }
+
+  function toggleMonthlyExpensesColumn() {
+
+  }
+
   return (
       <div className="flex">
         {/* Sidebar for Desktop */}
-        <nav className="hidden md:flex flex-col md:fixed h-screen w-14 bg-gray-950 text-white p-4">
+        <nav className="hidden md:flex flex-col md:fixed md:h-screen md:w-14 bg-gray-950 text-white p-4">
           <div
               data-tooltip-id="dashboard-tooltip"
               data-tooltip-content="Dashboard"
@@ -168,14 +176,24 @@ export const Navbar = () => {
               className={`text-center ${getNavLinkClass("/dashboard")}`}
           >
             <RectangleGroupIcon className="h-6 w-6 mx-auto" />
-            <span className="text-sm">Dashboard</span>
           </Link>
+          <button
+              onClick={() => toggleCalendarColumn()}
+              className="text-center text-gray-500 hover:cursor-pointer hover:rounded-sm hover:bg-gray-800 hover:text-gray-200 hover:outline hover:outline-1 hover:outline-offset-0 hover:outline-gray-700"
+          >
+            <CalendarIcon className="h-6 w-6 mx-auto" />
+          </button>
+          <button
+              onClick={() => toggleMonthlyExpensesColumn()}
+              className="text-center text-gray-500 hover:cursor-pointer hover:rounded-sm hover:bg-gray-800 hover:text-gray-200 hover:outline hover:outline-1 hover:outline-offset-0 hover:outline-gray-700"
+          >
+            <TableCellsIcon className="h-6 w-6 mx-auto" />
+          </button>
           <button
               onClick={() => signOutUser()}
               className="text-center text-gray-500 hover:cursor-pointer hover:rounded-sm hover:bg-gray-800 hover:text-gray-200 hover:outline hover:outline-1 hover:outline-offset-0 hover:outline-gray-700"
           >
             <ArrowLeftOnRectangleIcon className="h-6 w-6 mx-auto" />
-            <span className="text-sm">Sign Out</span>
           </button>
         </nav>
       </div>
