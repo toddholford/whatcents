@@ -124,7 +124,7 @@ export const Navbar = () => {
   return (
       <div className="flex">
         {/* Sidebar for Desktop */}
-        <nav className="hidden md:flex flex-col w-64 bg-gray-950 text-white p-4">
+        <nav className="hidden md:flex flex-col md:fixed h-screen w-14 bg-gray-950 text-white p-4">
           <div
               data-tooltip-id="dashboard-tooltip"
               data-tooltip-content="Dashboard"
@@ -133,7 +133,6 @@ export const Navbar = () => {
             <Link to="/dashboard">
               <div className="flex flex-row items-center">
                 <RectangleGroupIcon className="h-6 w-6 mr-2" />
-                Dashboard
               </div>
             </Link>
           </div>
@@ -151,7 +150,6 @@ export const Navbar = () => {
             <button onClick={() => signOutUser()}>
               <div className="flex flex-row items-center">
                 <ArrowLeftOnRectangleIcon className="h-6 w-6 mr-2" />
-                Sign Out
               </div>
             </button>
           </div>

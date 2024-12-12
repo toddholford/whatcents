@@ -175,11 +175,10 @@ export const DashboardPage = () => {
       {calculatorOpen ? (
         <Calculator setCalculatorOpen={setCalculatorOpen} />
       ) : null}
-      <div className="grid grid-cols-2 lg:grid-cols-24">
-        <Navbar/>
+      <Navbar />
         <div
           id="main-content"
-          className="md:gap-2 md:col-span-23 md:row-span-full md:grid md:grid-cols-12 md:grid-rows-4 bg-gray-950"
+          className="md:ml-14 md:gap-2 md:col-span-23 md:row-span-full md:grid md:grid-cols-12 md:grid-rows-4 bg-gray-950"
         >
           <FormColumn
               userUUID={userUUID}
@@ -226,7 +225,6 @@ export const DashboardPage = () => {
               fetchError={fetchError}
               setFetchError={setFetchError}
           />
-        </div>
       </div>
     </>
   );
