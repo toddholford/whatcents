@@ -13,7 +13,7 @@ export const CalendarColumn = ({date, selectedDate, setSelectedDate, payweekCale
         >
             <div
                 id="remaining_expenses_total"
-                className="col-span-1 row-span-1 flex flex-row content-center items-center justify-between bg-gray-900 px-2 text-gray-400 outline outline-1 outline-offset-0 outline-gray-700"
+                className="col-span-1 row-span-1 flex flex-row items-center justify-between bg-gray-900 px-2 text-gray-400 outline outline-1 outline-offset-0 outline-gray-700 md:col-span-1 md:row-span-1 md:flex md:flex-row md:content-center md:items-center md:justify-between md:bg-gray-900 md:px-2 md:text-gray-400 md:outline md:outline-1 md:outline-offset-0 md:outline-gray-700"
             >
                 <div className="">Remaining Expenses Total</div>
                 <div className="">{
