@@ -88,7 +88,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   ArrowLeftOnRectangleIcon, CalendarIcon,
   RectangleGroupIcon,
-  TableCellsIcon,
+  TableCellsIcon, ViewColumnsIcon,
 } from "@heroicons/react/24/outline";
 import supabaseClient from "../../config/supabaseClient";
 import { Tooltip } from "react-tooltip";
@@ -139,6 +139,18 @@ export const Navbar = ({formColumn, setFormColumn, calendarColumn, setCalendarCo
     setCalendarColumn(false);
   }
 
+  function toggleAllColumns() {
+    if (formColumn === calendarColumn === monthlyExpensesColumn) {
+      setFormColumn(!formColumn);
+      setCalendarColumn(!calendarColumn);
+      setMonthlyExpensesColumn(!monthlyExpensesColumn);
+    }else{
+      setFormColumn(true);
+      setCalendarColumn(true);
+      setMonthlyExpensesColumn(true);
+    }
+  }
+
   return (
       <div className="flex">
         {/* Sidebar for Desktop */}
@@ -173,6 +185,23 @@ export const Navbar = ({formColumn, setFormColumn, calendarColumn, setCalendarCo
           </div>
           <Tooltip
               id="sign-out-tooltip"
+              delayShow={800}
+              style={{ backgroundColor: "rgb(31 41 55)", color: "#FFFFFF" }}
+              className="outline outline-1 outline-offset-0 outline-gray-700"
+          />
+          <div
+              data-tooltip-id="show-all-columns-tooltip"
+              data-tooltip-content="Show All Columns"
+              className="text-gray-500 hover:cursor-pointer hover:rounded-sm hover:bg-gray-800 hover:text-gray-200 hover:outline hover:outline-1 hover:outline-offset-0 hover:outline-gray-700"
+          >
+            <button onClick={() => toggleAllColumns()}>
+              <div className="flex flex-row items-center">
+                <ViewColumnsIcon className="h-6 w-6 mr-2" />
+              </div>
+            </button>
+          </div>
+          <Tooltip
+              id="show-all-columns-tooltip"
               delayShow={800}
               style={{ backgroundColor: "rgb(31 41 55)", color: "#FFFFFF" }}
               className="outline outline-1 outline-offset-0 outline-gray-700"
