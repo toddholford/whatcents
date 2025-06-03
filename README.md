@@ -9,3 +9,5 @@ This is a simple app that calculates the remainder of your paycheck.
 3. Set your repeating expenses
 4. Select your pay period frequency
 5. See how much you have left over after payday!
+
+Login at: https://whatcents.vercel.app/
