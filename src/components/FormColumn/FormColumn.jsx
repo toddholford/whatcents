@@ -9,6 +9,7 @@ import {addPaycheckInfo, getIds, updatePaycheckInfo} from "../../services/Payche
 
 export const FormColumn = ({userUUID, repeatingExpenses, setRepeatingExpenses, setRepeatingExpenseTotal, startDate, setDate, calculatorOpen, setCalculatorOpen, incomeAmount, setIncomeAmount, expenseAmount, repeatingExpenseTotal, payFrequency, setPayFrequency, payFrequencies, ids, setIds, fetchError, setFetchError}) => {
 
+    const isMobile = window.innerWidth < window.innerHeight;
     const notify = () => toast("Saved calculation values");
 
     const toggleCalculator = () => {
@@ -56,12 +57,15 @@ export const FormColumn = ({userUUID, repeatingExpenses, setRepeatingExpenses, s
                 className="col-span-1 row-span-1 flex flex-row items-center justify-between bg-gray-900 px-2 text-gray-400 outline outline-1 outline-offset-0 outline-gray-700"
             >
                 <div className="">Remainder</div>
+                {!isMobile ?
                 <div
                     className="cursor-pointer text-emerald-700 hover:text-emerald-500 active:text-emerald-300"
                     onMouseDown={toggleCalculator}
                 >
                     <CalculatorIcon className="h-6 w-6" />
-                </div>
+                </div>:
+                <div></div>
+                }
             </div>
             <div
                 id="remainder"
@@ -91,7 +95,7 @@ export const FormColumn = ({userUUID, repeatingExpenses, setRepeatingExpenses, s
                     adjustBy="100"
                     placeholder="Current Average Income"
                     customClassNames="pb-2"
-                ></CustomNumberInput>
+                />
                 <CustomDropdown
                     options={payFrequencies}
                     selected={payFrequency}

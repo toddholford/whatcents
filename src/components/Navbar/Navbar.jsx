@@ -1,102 +1,17 @@
-// import React, { useEffect, useState } from "react";
-// import { Link, useLocation, useNavigate } from "react-router-dom";
-// import {
-//   ArrowLeftStartOnRectangleIcon,
-//   RectangleGroupIcon,
-//   TableCellsIcon,
-// } from "@heroicons/react/24/outline";
-// import supabaseClient from "../../config/supabaseClient";
-// import { Tooltip } from "react-tooltip";
-//
-// export const Navbar = () => {
-//   const [user, setUser] = useState({});
-//   const navigate = useNavigate();
-//   const location = useLocation();
-//
-//   useEffect(() => {
-//     async function getUserData() {
-//       const { data } = await supabaseClient.auth.getUser();
-//       if (data?.user) {
-//         setUser(data.user);
-//       }
-//     }
-//     getUserData();
-//   }, []);
-//
-//   async function signOutUser() {
-//     const { error } = await supabaseClient.auth.signOut();
-//     if (!error) {
-//       navigate("/");
-//     }
-//   }
-//
-//   const getNavLinkClass = (path) => {
-//     return location.pathname === path
-//       ? "bg-gray-800 text-gray-200 rounded-sm outline outline-1 outline-offset-0 outline-gray-700"
-//       : "text-gray-500 hover:cursor-pointer hover:rounded-sm hover:bg-gray-800 hover:text-gray-200 hover:outline hover:outline-1 hover:outline-offset-0 hover:outline-gray-700";
-//   };
-//
-//   return (
-//     <article
-//       id="navbar"
-//       className="col-span-1 row-span-full grid grid-rows-24 bg-gray-950 outline outline-1 outline-offset-0 outline-gray-700"
-//     >
-//       <div
-//         data-tooltip-id="dashboard-tooltip"
-//         data-tooltip-content="Dashboard"
-//         className={`col-start-1 row-start-2 mx-2 content-center ${getNavLinkClass("/dashboard")}`}
-//       >
-//         <Link to="/dashboard">
-//           <div className="flex flex-row justify-center">
-//             <RectangleGroupIcon className="h-6 w-6" />
-//           </div>
-//         </Link>
-//       </div>
-//       <Tooltip
-//         id="dashboard-tooltip"
-//         delayShow={800}
-//         style={{ backgroundColor: "rgb(31 41 55)", color: "#FFFFFF" }}
-//         className="bg-gray-800 outline outline-1 outline-offset-0 outline-gray-700"
-//       />
-//
-//       <div
-//         data-tooltip-id="sign-out-tooltip"
-//         data-tooltip-content="Sign Out"
-//         className="col-start-1 row-start-19 mx-2 content-center text-center align-middle text-gray-500 hover:cursor-pointer hover:rounded-sm hover:bg-gray-800 hover:text-gray-200 hover:outline hover:outline-1 hover:outline-offset-0 hover:outline-gray-700"
-//       >
-//         <button onClick={() => signOutUser()}>
-//           <div
-//             id="sign-out-button"
-//             className="flex flex-row justify-center pt-2"
-//           >
-//             <ArrowLeftStartOnRectangleIcon className="h-6 w-6" />
-//           </div>
-//         </button>
-//       </div>
-//       <Tooltip
-//         id="sign-out-tooltip"
-//         delayShow={800}
-//         style={{ backgroundColor: "rgb(31 41 55)", color: "#FFFFFF" }}
-//         className="outline outline-1 outline-offset-0 outline-gray-700"
-//       />
-//     </article>
-//   );
-// };
-
 import React, { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
-  ArrowLeftOnRectangleIcon, CalendarIcon,
+  ArrowLeftStartOnRectangleIcon,
+  CalendarIcon,
   RectangleGroupIcon,
-  TableCellsIcon, ViewColumnsIcon,
+  TableCellsIcon,
 } from "@heroicons/react/24/outline";
 import supabaseClient from "../../config/supabaseClient";
-import { Tooltip } from "react-tooltip";
+import {NavbarItem} from "../NavbarItem";
 
 export const Navbar = ({formColumn, setFormColumn, calendarColumn, setCalendarColumn, monthlyExpensesColumn, setMonthlyExpensesColumn}) => {
   const [user, setUser] = useState({});
   const navigate = useNavigate();
-  const location = useLocation();
 
   useEffect(() => {
     async function getUserData() {
@@ -114,12 +29,6 @@ export const Navbar = ({formColumn, setFormColumn, calendarColumn, setCalendarCo
       navigate("/");
     }
   }
-
-  const getNavLinkClass = (path) => {
-    return location.pathname === path
-        ? "bg-gray-800 text-gray-200 rounded-sm outline outline-1 outline-offset-0 outline-gray-700"
-        : "text-gray-500 hover:cursor-pointer hover:rounded-sm hover:bg-gray-800 hover:text-gray-200 hover:outline hover:outline-1 hover:outline-offset-0 hover:outline-gray-700";
-  };
 
   function toggleFormColumn() {
     setFormColumn(!formColumn);
@@ -139,101 +48,20 @@ export const Navbar = ({formColumn, setFormColumn, calendarColumn, setCalendarCo
     setCalendarColumn(false);
   }
 
-  function toggleAllColumns() {
-    if (formColumn === calendarColumn === monthlyExpensesColumn) {
-      setFormColumn(!formColumn);
-      setCalendarColumn(!calendarColumn);
-      setMonthlyExpensesColumn(!monthlyExpensesColumn);
-    }else{
-      setFormColumn(true);
-      setCalendarColumn(true);
-      setMonthlyExpensesColumn(true);
-    }
-  }
-
   return (
       <div className="flex">
         {/* Sidebar for Desktop */}
-        <nav className="hidden md:flex flex-col md:fixed md:h-screen md:w-14 bg-gray-950 text-white p-4">
-          <div
-              data-tooltip-id="dashboard-tooltip"
-              data-tooltip-content="Dashboard"
-              className={`mb-2 ${getNavLinkClass("/dashboard")}`}
-          >
-            <Link to="/dashboard">
-              <div className="flex flex-row items-center">
-                <RectangleGroupIcon className="h-6 w-6 mr-2" />
-              </div>
-            </Link>
-          </div>
-          <Tooltip
-              id="dashboard-tooltip"
-              delayShow={800}
-              style={{ backgroundColor: "rgb(31 41 55)", color: "#FFFFFF" }}
-              className="bg-gray-800 outline outline-1 outline-offset-0 outline-gray-700"
-          />
-          <div
-              data-tooltip-id="sign-out-tooltip"
-              data-tooltip-content="Sign Out"
-              className="text-gray-500 hover:cursor-pointer hover:rounded-sm hover:bg-gray-800 hover:text-gray-200 hover:outline hover:outline-1 hover:outline-offset-0 hover:outline-gray-700"
-          >
-            <button onClick={() => signOutUser()}>
-              <div className="flex flex-row items-center">
-                <ArrowLeftOnRectangleIcon className="h-6 w-6 mr-2" />
-              </div>
-            </button>
-          </div>
-          <Tooltip
-              id="sign-out-tooltip"
-              delayShow={800}
-              style={{ backgroundColor: "rgb(31 41 55)", color: "#FFFFFF" }}
-              className="outline outline-1 outline-offset-0 outline-gray-700"
-          />
-          <div
-              data-tooltip-id="show-all-columns-tooltip"
-              data-tooltip-content="Show All Columns"
-              className="text-gray-500 hover:cursor-pointer hover:rounded-sm hover:bg-gray-800 hover:text-gray-200 hover:outline hover:outline-1 hover:outline-offset-0 hover:outline-gray-700"
-          >
-            <button onClick={() => toggleAllColumns()}>
-              <div className="flex flex-row items-center">
-                <ViewColumnsIcon className="h-6 w-6 mr-2" />
-              </div>
-            </button>
-          </div>
-          <Tooltip
-              id="show-all-columns-tooltip"
-              delayShow={800}
-              style={{ backgroundColor: "rgb(31 41 55)", color: "#FFFFFF" }}
-              className="outline outline-1 outline-offset-0 outline-gray-700"
-          />
+        <nav className="hidden lg:flex flex-col lg:fixed lg:h-screen lg:w-14 bg-gray-950 text-white p-2 gap-2">
+          <NavbarItem isActive={formColumn} itemName="Dashboard" navIcon={<RectangleGroupIcon className="h-6 w-6" />} isLink={true} showTooltip={true}/>
+          <NavbarItem itemName="Sign Out" navIcon={<ArrowLeftStartOnRectangleIcon className="h-6 w-6 my-2" />} buttonClickAction={() => signOutUser()} showTooltip={true}/>
         </nav>
 
         {/* Bottom Navbar for Mobile */}
-        <nav className="fixed bottom-0 left-0 w-full bg-gray-950 text-white p-4 flex justify-around md:hidden">
-          <button
-              onClick={() => toggleFormColumn()}
-              className="text-center text-gray-500 p-2 hover:cursor-pointer hover:rounded-sm hover:bg-gray-800 hover:text-gray-200 hover:outline hover:outline-1 hover:outline-offset-0 hover:outline-gray-700"
-          >
-            <RectangleGroupIcon className="h-6 w-6 mx-auto" />
-          </button>
-          <button
-              onClick={() => toggleCalendarColumn()}
-              className="text-center text-gray-500 p-2 hover:cursor-pointer hover:rounded-sm hover:bg-gray-800 hover:text-gray-200 hover:outline hover:outline-1 hover:outline-offset-0 hover:outline-gray-700"
-          >
-            <CalendarIcon className="h-6 w-6 mx-auto" />
-          </button>
-          <button
-              onClick={() => toggleMonthlyExpensesColumn()}
-              className="text-center text-gray-500 p-2 hover:cursor-pointer hover:rounded-sm hover:bg-gray-800 hover:text-gray-200 hover:outline hover:outline-1 hover:outline-offset-0 hover:outline-gray-700"
-          >
-            <TableCellsIcon className="h-6 w-6 mx-auto" />
-          </button>
-          <button
-              onClick={() => signOutUser()}
-              className="text-center text-gray-500 p-2 hover:cursor-pointer hover:rounded-sm hover:bg-gray-800 hover:text-gray-200 hover:outline hover:outline-1 hover:outline-offset-0 hover:outline-gray-700"
-          >
-            <ArrowLeftOnRectangleIcon className="h-6 w-6 mx-auto" />
-          </button>
+        <nav className="z-10 fixed bottom-0 left-0 w-full bg-gray-950 text-white p-4 flex justify-around lg:hidden">
+          <NavbarItem isActive={formColumn} itemName="Dashboard" navIcon={<RectangleGroupIcon className="h-6 w-6 mx-auto" />} buttonClickAction={() => toggleFormColumn()}/>
+          <NavbarItem isActive={calendarColumn} itemName="Calendar" navIcon={<CalendarIcon className="h-6 w-6 mx-auto" />} buttonClickAction={() => toggleCalendarColumn()}/>
+          <NavbarItem isActive={monthlyExpensesColumn} itemName="Expenses" navIcon={<TableCellsIcon className="h-6 w-6 mx-auto" />} buttonClickAction={() => toggleMonthlyExpensesColumn()}/>
+          <NavbarItem itemName="Sign Out" navIcon={<ArrowLeftStartOnRectangleIcon className="h-6 w-6 mx-auto" />} buttonClickAction={() => signOutUser()}/>
         </nav>
       </div>
   );

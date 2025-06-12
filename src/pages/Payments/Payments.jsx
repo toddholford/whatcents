@@ -39,40 +39,53 @@ export const PaymentsPage = ({ payments, setPayments, fetchError, setFetchError 
     deletePaymentRow(id, setPayments);
   };
 
+  function getTableBodyClasses() {
+    if (window.innerWidth < window.innerHeight ) {
+      return "w-full overflow-y-auto overflow-x-hidden h-[calc(100vh-15rem)]";
+    }
+
+    return "w-full overflow-y-auto overflow-x-hidden h-[calc(100vh-11rem)]";
+  }
+
   return (
     <article className="col-span-1 row-span-full grid h-screen grid-cols-12 grid-rows-12 bg-gray-900">
 
       <div className="col-span-full row-span-11 pb-10">
-        <table className="h-full w-full text-center text-sm text-white">
-          <thead className="bg-gray-900 text-xs uppercase text-gray-500 outline outline-1 outline-offset-0 outline-gray-700">
-            <tr className="flex w-full items-center justify-evenly">
-              <th scope="col" className="w-1/4 p-2">
-                Expense
-              </th>
-              <th scope="col" className="w-1/4 p-2 flex items-center justify-center">
-                <span>Amount</span>
-                {/*<SortButton column="amount" sortOrder={sortStates["amount"]} onSort={handlePaymentSort} />*/}
-              </th>
-              <th scope="col" className="w-1/4 p-2 flex items-center justify-center">
-                <span>Due Date</span>
-                {/*<SortButton column="dueDate" sortOrder={sortStates["dueDate"]} onSort={handlePaymentSort} />*/}
-              </th>
-              <th scope="col" className="w-1/4 p-2"></th>
+        {/* Table Header */}
+        <div className="w-full">
+          <table className="w-full text-sm text-white">
+            <thead className="bg-gray-900 text-xs uppercase text-gray-500 outline outline-1 outline-gray-700">
+            <tr>
+              <th className="w-1/4 p-2">Expense</th>
+              <th className="w-1/4 p-2">Amount</th>
+              <th className="w-1/4 p-2">Due Date</th>
+              <th className="w-1/4 p-2"></th>
             </tr>
-          </thead>
-          <tbody className="flex h-97pc flex-col items-center overflow-y-scroll">
-            {fetchError && <p>{fetchError}</p>}
-            {payments &&
-              payments.map((payment) => (
+            </thead>
+          </table>
+        </div>
+
+        {/* Scrollable Table Body */}
+        <div className={getTableBodyClasses()}>
+          <table className="w-full text-sm text-white">
+            <tbody className="text-center">
+            {fetchError && (
+                <tr>
+                  <td colSpan="4" className="text-center p-4">{fetchError}</td>
+                </tr>
+            )}
+            {payments?.map((payment) => (
                 <PaymentsTableRow
-                  key={payment.id}
-                  payment={payment}
-                  onDelete={() => handlePaymentDelete(payment.id)}
+                    key={payment.id}
+                    payment={payment}
+                    onDelete={() => handlePaymentDelete(payment.id)}
                 />
-              ))}
-          </tbody>
-        </table>
+            ))}
+            </tbody>
+          </table>
+        </div>
       </div>
+
     </article>
   );
 };

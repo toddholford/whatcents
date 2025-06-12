@@ -1,43 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { Navbar } from "../../components/Navbar";
-import { PaycheckCalendarPaymentInfo } from "../../components/PaycheckCalendarPaymentInfo";
-import { PaycheckCalendar } from "../../components/PaycheckCalendar";
-import { CustomNumberInput } from "../../components/CustomNumberInput";
 import {addPayment, getAllPayments} from "../../services/PaymentsService";
 import { getPaycheckFrequencies } from "../../services/PaycheckFrequenciesService";
-import { getPaycheckCalculations } from "../../services/PaycheckCalculationsService";
-import { PaymentsPage } from "../Payments";
-import { CustomDropdown } from "../../components/CustomDropDown";
-import { CustomDateInput } from "../../components/CustomDateInput";
-import { toast, ToastContainer } from "react-toastify";
-import { RepeatingExpenses } from "../../components/RepeatingExpenses";
-import supabase from "../../config/supabaseClient";
 import {
   getCorrectDate,
-  formatDate,
-  AddDueDateSuffix,
+  formatDate
 } from "../../helpers/dateHelpers";
 import {
-  getAllPaymentsTotal,
   getPayweekCalendarRows,
   getPayweekDates,
   getPayweekExpenseTotal,
   getPayweekRemainingAmount,
   getSelectedDateExpenses,
-  getSelectedDateExpenseTotal, getSelectedPayweekExpenseTotal,
+  getSelectedPayweekExpenseTotal,
 } from "../../helpers/payweekHelpers";
 import {
-  addPaycheckInfo,
-  getId,
   getIds,
   getIncomeAmount,
   getPaycheckFrequency,
-  updatePaycheckInfo,
 } from "../../services/PaycheckInfoService";
 import { getUserUUID } from "../../services/UsersService";
-import { CalculatorIcon } from "@heroicons/react/24/outline";
 import { Calculator } from "../../components/Calculator";
-import {Helmet} from "react-helmet-async";
 import {FormColumn} from "../../components/FormColumn";
 import {CalendarColumn} from "../../components/CalendarColumn";
 import {MonthlyExpensesColumn} from "../../components/MonthlyExpensesColumn";
@@ -61,7 +44,6 @@ export const DashboardPage = () => {
   const [payments, setPayments] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedDateExpenses, setSelectedDateExpenses] = useState([]);
-  const [paycheckCalculations, setPaycheckCalculations] = useState([]);
   const [fetchError, setFetchError] = useState(null);
   const [userUUID, setUserUUID] = useState(null);
   const [ids, setIds] = useState([]);
@@ -71,10 +53,30 @@ export const DashboardPage = () => {
   const [paymentExpenseAmount, setPaymentExpenseAmount] = useState(0);
   const [expenseDueDate, setExpenseDueDate] = useState(0);
 
-  const [showFormColumn, setShowFormColumn] = useState(true);
+  const [showFormColumn, setShowFormColumn] = useState(false);
   const [showCalendarColumn, setShowCalendarColumn] = useState(false);
   const [showMonthlyExpensesColumn, setShowMonthlyExpensesColumn] = useState(false);
 
+  const isMobile = window.innerWidth < window.innerHeight;
+
+  function displayDashboard() {
+    switch (isMobile) {
+      case true:
+        setShowFormColumn(true);
+        break;
+      case false:
+        setShowFormColumn(true);
+        setShowCalendarColumn(true);
+        setShowMonthlyExpensesColumn(true);
+        break;
+      default:
+        return <></>;
+    }
+  }
+
+  useEffect(() => {
+    displayDashboard();
+  }, []);
 
   //get payments
   useEffect(() => {
@@ -83,10 +85,6 @@ export const DashboardPage = () => {
   //get paycheck frequencies
   useEffect(() => {
     getPaycheckFrequencies(setPayFrequencies, setFetchError);
-  }, []);
-  //get paycheck calculations
-  useEffect(() => {
-    getPaycheckCalculations(setPaycheckCalculations, setFetchError);
   }, []);
   //get user income
   useEffect(() => {
@@ -177,12 +175,12 @@ export const DashboardPage = () => {
   return (
     <>
       {calculatorOpen ? (
-        <Calculator setCalculatorOpen={setCalculatorOpen} />
+        <Calculator calculatorOpen={calculatorOpen} setCalculatorOpen={setCalculatorOpen} />
       ) : null}
       <Navbar formColumn={showFormColumn} setFormColumn={setShowFormColumn} calendarColumn={showCalendarColumn} setCalendarColumn={setShowCalendarColumn} monthlyExpensesColumn={showMonthlyExpensesColumn} setMonthlyExpensesColumn={setShowMonthlyExpensesColumn} />
       <div
           id="main-content"
-          className="md:ml-14 md:gap-2 md:col-span-23 md:row-span-full md:grid md:grid-cols-12 md:grid-rows-4 bg-gray-950"
+          className="lg:ml-14 lg:gap-2 lg:col-span-23 lg:row-span-full lg:grid lg:grid-cols-12 lg:grid-rows-4 bg-gray-950"
       >
         {showFormColumn && <FormColumn
             userUUID={userUUID}

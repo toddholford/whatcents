@@ -10,13 +10,15 @@ import {
 } from "@heroicons/react/24/outline";
 import { evaluate } from "mathjs";
 
-export const Calculator = ({ setCalculatorOpen }) => {
+export const Calculator = ({ calculatorOpen, setCalculatorOpen }) => {
   const [input, setInput] = useState("");
   const [inputString, setInputString] = useState("");
   const [latestInput, setLatestInput] = useState("");
   const [answer, setAnswer] = useState("");
-  const closeCalculator = () => {
-    setCalculatorOpen(false);
+
+  const toggleCalculator = () => {
+    setCalculatorOpen(!calculatorOpen);
+    console.log("open calculator after : ", calculatorOpen);
   };
 
   document.addEventListener("keydown", function (event) {
@@ -87,12 +89,12 @@ export const Calculator = ({ setCalculatorOpen }) => {
         y: window.innerHeight / 18,
       }}
     >
-      <div className="absolute z-10 flex h-1/2 w-1/6 flex-row justify-between rounded-sm bg-emerald-950 text-center">
+      <div className="absolute z-10 flex h-1/2 w-full lg:h-1/2 lg:w-1/6 flex-row justify-between rounded-sm bg-emerald-950 text-center">
         <div className="grid-rows-7 grid h-full w-full text-center">
           <div className="col-span-full row-span-1 grid grid-cols-4 rounded-sm bg-emerald-950 text-center">
             <div className="col-span-3 rounded-tl-sm bg-emerald-950 text-center outline outline-1 outline-offset-0 outline-emerald-700"></div>
             <button
-              onMouseDown={closeCalculator}
+              onMouseDown={toggleCalculator}
               className="col-span-1 flex cursor-pointer items-center justify-center rounded-tr-sm bg-emerald-950 text-center outline outline-1 outline-offset-0 outline-emerald-700 hover:bg-emerald-800 active:bg-emerald-700"
             >
               <XMarkIcon className="h-6 w-6" />
