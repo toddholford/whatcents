@@ -8,6 +8,7 @@ import {
   // Import predefined theme
   ThemeSupa,
 } from "@supabase/auth-ui-shared";
+import {TickerLetter} from "../../components/TickerLetter";
 
 const customTheme = {
   default: {
@@ -79,6 +80,7 @@ export const LoginPage = () => {
   const navigate = useNavigate();
   const [videoModalOpen, setVideoModalOpen] = useState(false);
   const video = useRef(null);
+  const START_DELAY = 2000;
 
   useEffect(() => {
     videoModalOpen ? video.current.play() : video.current.pause();
@@ -91,13 +93,20 @@ export const LoginPage = () => {
   });
 
   return (
-      <section className="max-h-screen overflow-hidden">
+      <section className="bg-custom-overlappingCircles max-h-screen overflow-hidden">
 
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="pt-12 pb-12 lg:pt-12 lg:pb-20">
             <div className="text-center tracking-wider lg:pb-6">
               <h1 className="text-3xl lg:text-7xl font-extrabold lg:mb-4" data-aos="zoom-y-out">
-                Keep your sense with <span className="bg-clip-text text-transparent bg-gradient-to-r from-emerald-900 to-emerald-400 -mt-2">Whatcents</span>
+                Keep your
+                {" "}
+                <TickerLetter original="s" alternate="c" startAfter={START_DELAY} delay={0} />
+                en
+                <TickerLetter original="s" alternate="t" startAfter={START_DELAY} delay={300} />
+                <TickerLetter original="e" alternate="s" startAfter={START_DELAY} delay={600} />
+                {" "}
+                with <span className="bg-clip-text text-transparent bg-gradient-to-r from-emerald-900 to-emerald-400 -mt-2">Whatcents</span>
               </h1>
               <div className="max-w-3xl mx-auto">
                 <p className="text-sm lg:text-xl italic font-extrabold text-gray-400 lg:mb-2" data-aos="zoom-y-out" data-aos-delay="150">

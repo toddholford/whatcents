@@ -19,7 +19,7 @@ export const Navbar = ({formColumn, setFormColumn, calendarColumn, setCalendarCo
       if (data?.user) {
         setUser(data.user);
       }
-    }
+  }
     getUserData();
   }, []);
 
