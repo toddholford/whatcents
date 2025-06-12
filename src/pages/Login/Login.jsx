@@ -94,24 +94,24 @@ export const LoginPage = () => {
       <section className="max-h-screen overflow-hidden">
 
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="pt-12 pb-12 md:pt-12 md:pb-20">
-            <div className="text-center tracking-wider md:pb-6">
-              <h1 className="text-3xl md:text-7xl font-extrabold md:mb-4" data-aos="zoom-y-out">
+          <div className="pt-12 pb-12 lg:pt-12 lg:pb-20">
+            <div className="text-center tracking-wider lg:pb-6">
+              <h1 className="text-3xl lg:text-7xl font-extrabold lg:mb-4" data-aos="zoom-y-out">
                 Keep your sense with <span className="bg-clip-text text-transparent bg-gradient-to-r from-emerald-900 to-emerald-400 -mt-2">Whatcents</span>
               </h1>
               <div className="max-w-3xl mx-auto">
-                <p className="text-sm md:text-xl italic font-extrabold text-gray-400 md:mb-2" data-aos="zoom-y-out" data-aos-delay="150">
+                <p className="text-sm lg:text-xl italic font-extrabold text-gray-400 lg:mb-2" data-aos="zoom-y-out" data-aos-delay="150">
                   No more wasted time on figuring out how much money you have left after monthly expenses.
                 </p>
-                <p className="text-sm md:text-xl text-gray-400 md:mb-8" data-aos="zoom-y-out" data-aos-delay="150">
+                <p className="text-sm lg:text-xl text-gray-400 lg:mb-8" data-aos="zoom-y-out" data-aos-delay="150">
                   It's simple, after adding all of your monthly expenses, add your average paycheck income and Whatcents will tell you how much you have left!
                 </p>
               </div>
             </div>
 
             <div>
-              <div className="flex justify-center md:justify-between">
-              <div className="hidden md:relative md:flex justify-center mb-8" data-aos="zoom-y-out" data-aos-delay="450">
+              <div className="flex justify-center lg:justify-between">
+              <div className="hidden lg:relative lg:flex justify-center mb-8" data-aos="zoom-y-out" data-aos-delay="450">
                 <div className="flex flex-col justify-center">
                   <img className="mx-auto" src={LandingThumbnail} width="768" height="432" alt="Hero" />
                 </div>

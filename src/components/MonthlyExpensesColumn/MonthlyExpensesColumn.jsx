@@ -26,7 +26,7 @@ export const MonthlyExpensesColumn = ({handlePaymentSubmit, expenseName, setExpe
                             placeholder="Name of Expense..."
                             type="text"
                             id="expense_name"
-                            className="block h-8 w-full rounded-sm bg-gray-850 pl-2 text-xs outline outline-1 outline-offset-0 outline-gray-700"
+                            className="block w-full h-8 rounded-sm bg-gray-850 pl-2 text-xs outline outline-1 outline-offset-0 outline-gray-700"
                             onChange={(e) => {
                                 setExpenseName(e.target.value);
                             }}

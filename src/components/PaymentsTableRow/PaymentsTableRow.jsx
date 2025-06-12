@@ -38,6 +38,13 @@ export const PaymentsTableRow = ({ payment, setPayments, onDelete }) => {
   //   deletePaymentRow(payment.id, setPayments);
   // };
 
+  function expenseNameShortener(expenseName) {
+    if (expenseName.length > 12) {
+      return `${expenseName.substring(0, 12)}...`;
+    }
+    return expenseName;
+  }
+
   return (
     <tr className="flex w-full items-center border-b border-gray-700 bg-gray-900">
       {editing === false ? (
@@ -46,7 +53,9 @@ export const PaymentsTableRow = ({ payment, setPayments, onDelete }) => {
             scope="row"
             className="w-1/4 whitespace-nowrap p-4 text-sm font-medium text-gray-200"
           >
-            {payment.expense_name}
+            <div title={payment.expense_name}>
+              {expenseNameShortener(expenseName)}
+            </div>
           </th>
           <td className="w-1/4 p-4">
             {addCurrencyZeroes(payment.expense_amount)}
@@ -54,7 +63,7 @@ export const PaymentsTableRow = ({ payment, setPayments, onDelete }) => {
           <td className="w-1/4 p-4 ordinal">
             {AddDueDateSuffix(payment.expense_due_date)}
           </td>
-          <td className="w-1/4 px-4 flex items-center justify-center">
+          <td className="w-1/4 flex items-center justify-center">
             <div className="inline-flex rounded-sm shadow-sm" role="group">
               <button onClick={() => {
                 setEditing(true);

@@ -7,6 +7,9 @@ module.exports = {
     "./node_modules/flowbite-react/lib/esm/**/*.js",
   ],
   theme: {
+    screens: {
+      'lg': '1124px',
+    },
     extend: {
       borderWidth: {
         DEFAULT: '1px',
@@ -170,6 +173,9 @@ module.exports = {
       },
       scale: {
         25: ".25",
+      },
+      spacing: {
+        "31": "31px",
       },
       width: {
         58: "14.25rem",
