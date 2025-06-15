@@ -50,7 +50,7 @@ export const FormColumn = ({userUUID, repeatingExpenses, setRepeatingExpenses, s
     return (
         <div
             id="left"
-            className="col-span-3 row-span-full grid grid-flow-row grid-rows-24 bg-gray-900"
+            className="col-span-3 row-span-full grid grid-flow-row grid-rows-24 bg-gray-900 outline outline-1 outline-offset-0 outline-gray-700"
         >
             <div
                 id="a"

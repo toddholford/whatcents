@@ -90,7 +90,7 @@ export const Calculator = ({ calculatorOpen, setCalculatorOpen }) => {
       }}
     >
       <div className="absolute z-10 flex h-1/2 w-full lg:h-1/2 lg:w-1/6 flex-row justify-between rounded-sm bg-emerald-950 text-center">
-        <div className="grid-rows-7 grid h-full w-full text-center">
+        <div className="grid-rows-8 grid h-full w-full text-center">
           <div className="col-span-full row-span-1 grid grid-cols-4 rounded-sm bg-emerald-950 text-center">
             <div className="col-span-3 rounded-tl-sm bg-emerald-950 text-center outline outline-1 outline-offset-0 outline-emerald-700"></div>
             <button

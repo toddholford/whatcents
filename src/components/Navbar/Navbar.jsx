@@ -51,7 +51,7 @@ export const Navbar = ({formColumn, setFormColumn, calendarColumn, setCalendarCo
   return (
       <div className="flex">
         {/* Sidebar for Desktop */}
-        <nav className="hidden lg:flex flex-col lg:fixed lg:h-screen lg:w-14 bg-gray-950 text-white p-2 gap-2">
+        <nav className="hidden lg:flex flex-col lg:fixed lg:h-screen lg:w-14 bg-gray-950 text-white p-2 gap-2 outline outline-1 outline-offset-0 outline-gray-700">
           <NavbarItem isActive={formColumn} itemName="Dashboard" navIcon={<RectangleGroupIcon className="h-6 w-6" />} isLink={true} showTooltip={true}/>
           <NavbarItem itemName="Sign Out" navIcon={<ArrowLeftStartOnRectangleIcon className="h-6 w-6 my-2" />} buttonClickAction={() => signOutUser()} showTooltip={true}/>
         </nav>
