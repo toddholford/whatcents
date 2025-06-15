@@ -93,7 +93,7 @@ export const LoginPage = () => {
   });
 
   return (
-      <section className="bg-custom-overlappingCircles max-h-screen overflow-hidden">
+      <section className="max-h-screen overflow-hidden">
 
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="pt-12 pb-12 lg:pt-12 lg:pb-20">
