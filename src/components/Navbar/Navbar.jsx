@@ -31,21 +31,27 @@ export const Navbar = ({formColumn, setFormColumn, calendarColumn, setCalendarCo
   }
 
   function toggleFormColumn() {
-    setFormColumn(!formColumn);
-    setCalendarColumn(false);
-    setMonthlyExpensesColumn(false);
+    if (!formColumn) {
+      setFormColumn(!formColumn);
+      setCalendarColumn(false);
+      setMonthlyExpensesColumn(false);
+    }
   }
 
   function toggleCalendarColumn() {
-    setCalendarColumn(!calendarColumn);
-    setFormColumn(false);
-    setMonthlyExpensesColumn(false);
+    if (!calendarColumn) {
+      setCalendarColumn(!calendarColumn);
+      setFormColumn(false);
+      setMonthlyExpensesColumn(false);
+    }
   }
 
   function toggleMonthlyExpensesColumn() {
-    setMonthlyExpensesColumn(!monthlyExpensesColumn);
-    setFormColumn(false);
-    setCalendarColumn(false);
+    if(!monthlyExpensesColumn){
+      setMonthlyExpensesColumn(!monthlyExpensesColumn);
+      setFormColumn(false);
+      setCalendarColumn(false);
+    }
   }
 
   return (

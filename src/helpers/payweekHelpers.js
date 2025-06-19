@@ -91,7 +91,16 @@ export function getPayweekCalendarRows(payweekDates, payFrequency) {
   return calendarDateRows;
 }
 
-export function getDefaultSelectedDate() {}
+export function getDefaultSelectedDate(calendarDateRows) {
+  let selectedDate = null;
+  for (let i = 0; i < calendarDateRows.length; i++) {
+    if (calendarDateRows[i].length > 0) {
+      selectedDate = calendarDateRows[i][0].dayNumber;
+      break;
+    }
+  }
+  return selectedDate;
+}
 
 export function getSelectedDateExpenses(
   selectedDate,

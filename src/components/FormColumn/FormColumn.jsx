@@ -7,7 +7,7 @@ import {toast, ToastContainer} from "react-toastify";
 import {RepeatingExpenses} from "../RepeatingExpenses";
 import {addPaycheckInfo, getIds, updatePaycheckInfo} from "../../services/PaycheckInfoService";
 
-export const FormColumn = ({userUUID, repeatingExpenses, setRepeatingExpenses, setRepeatingExpenseTotal, startDate, setDate, calculatorOpen, setCalculatorOpen, incomeAmount, setIncomeAmount, expenseAmount, repeatingExpenseTotal, payFrequency, setPayFrequency, payFrequencies, ids, setIds, fetchError, setFetchError}) => {
+export const FormColumn = ({userUUID, repeatingExpenses, setRepeatingExpenses, setRepeatingExpenseTotal, startDate, setStartDate, setDate, calculatorOpen, setCalculatorOpen, incomeAmount, setIncomeAmount, expenseAmount, repeatingExpenseTotal, payFrequency, setPayFrequency, payFrequencies, ids, setIds, fetchError, setFetchError}) => {
 
     const isMobile = window.innerWidth < window.innerHeight;
     const notify = () => toast("Saved calculation values");
@@ -50,7 +50,7 @@ export const FormColumn = ({userUUID, repeatingExpenses, setRepeatingExpenses, s
     return (
         <div
             id="left"
-            className="col-span-3 row-span-full grid grid-flow-row grid-rows-24 bg-gray-900 outline outline-1 outline-offset-0 outline-gray-700"
+            className="min-h-screen col-span-3 row-span-full grid grid-flow-row grid-rows-24 bg-gray-900 outline outline-1 outline-offset-0 outline-gray-700"
         >
             <div
                 id="a"
