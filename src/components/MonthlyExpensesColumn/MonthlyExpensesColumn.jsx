@@ -7,7 +7,7 @@ export const MonthlyExpensesColumn = ({handlePaymentSubmit, expenseName, setExpe
     return (
         <div
             id="right"
-            className="col-span-5 row-span-full grid grid-flow-row grid-rows-24 bg-gray-900 outline outline-1 outline-offset-0 outline-gray-700"
+            className="min-h-screen col-span-5 row-span-full grid grid-flow-row grid-rows-24 bg-gray-900 outline outline-1 outline-offset-0 outline-gray-700"
         >
             <div
                 id="h"

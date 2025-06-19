@@ -4,12 +4,12 @@ import {getSelectedDateExpenseTotal} from "../../helpers/payweekHelpers";
 import {AddDueDateSuffix} from "../../helpers/dateHelpers";
 import {PaycheckCalendarPaymentInfo} from "../PaycheckCalendarPaymentInfo";
 
-export const CalendarColumn = ({date, selectedDate, setSelectedDate, payweekCalendarEndDate, incomeAmount, expenseAmount, selectedExpenseAmount, payweekCalendarRows, selectedDateExpenses }) => {
+export const CalendarColumn = ({date, startDate, selectedDate, setSelectedDate, payweekCalendarEndDate, incomeAmount, expenseAmount, selectedExpenseAmount, payweekCalendarRows, selectedDateExpenses }) => {
 
     return (
         <div
             id="center"
-            className="col-span-4 row-span-full grid grid-flow-row grid-rows-24 bg-gray-900 outline outline-1 outline-offset-0 outline-gray-700"
+            className="min-h-screen col-span-4 row-span-full grid grid-flow-row grid-rows-24 bg-gray-900 outline outline-1 outline-offset-0 outline-gray-700"
         >
             <div
                 id="remaining_expenses_total"
@@ -17,7 +17,7 @@ export const CalendarColumn = ({date, selectedDate, setSelectedDate, payweekCale
             >
                 <div className="">Remaining Expenses Total</div>
                 <div className="">{
-                    `${selectedDate} - ${payweekCalendarEndDate}`
+                    selectedDate ? `${selectedDate} - ${payweekCalendarEndDate}` : `${startDate} - ${payweekCalendarEndDate}`
                 }</div>
             </div>
             <div
