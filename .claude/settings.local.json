@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx tsc:*)",
+      "Bash(node node_modules/typescript/bin/tsc --noEmit)",
+      "Bash(node -e \"require\\('tailwindcss'\\); console.log\\('ok'\\)\")"
+    ]
+  }
+}
